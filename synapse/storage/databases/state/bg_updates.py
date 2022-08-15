@@ -133,6 +133,9 @@ class StateGroupBackgroundUpdateStore(SQLBaseStore):
             for group in groups:
                 args: List[Union[int, str]] = [group]
                 args.extend(where_args)
+                sql_full = sql % (where_clause,)
+                print(f"\n\n{sql_full}\n\n")
+                print(f"\n\n{args}\n\n")
 
                 txn.execute(sql % (where_clause,), args)
                 for row in txn:
